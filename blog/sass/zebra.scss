@@ -1,0 +1,588 @@
+@import "reset";
+@import "rem";
+$aotokenGreen: #00AA90;
+@mixin textOverFlowSingleLine {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.icon-list {
+    width: 0.6rem;
+    height: 0.6rem;
+}
+
+html, body {
+    background-color: #ededed;
+    overflow-x: hidden;
+    font-family: Arial, STXihei, "华文细黑", Heiti, "黑体", "Microsoft YaHei", "微软雅黑", SimSun, "宋体", sans-serif;
+}
+
+.content {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+}
+
+
+/* 页面头部区域 - logo 与 导航 */
+
+.header-container {
+    width: 100%;
+    background: $aotokenGreen;
+    font-size: 16px;
+    overflow-x: hidden;
+    .header {
+        height: 1rem;
+        max-height: 60px;
+        overflow: hidden;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        .logo {
+            height: 100%;
+            flex: 2;
+            a {
+                display: inline-block;
+                background-repeat: no-repeat;
+                background-size: auto 100%;
+                background-position-y: -5px;
+                text-indent: -100%;
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .icon-list {
+            display: none;
+        }
+    }
+}
+
+.header-list {
+    flex: 8;
+    text-align: right;
+    .header-item {
+        display: inline-block;
+        a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0 10px;
+        }
+    }
+}
+
+footer {
+    margin-top: 140px;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    font-size: 16px;
+    text-align: center;
+    color: #666;
+    padding: 20px 0px 20px;
+    .info {}
+    .infobox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+    }
+    .contacts {
+        text-align: left;
+        margin-right: 40px;
+        .contacts-i {
+            padding: 5px 0px;
+        }
+    }
+}
+
+
+/* 首页 - 文章列表 */
+
+.article-list {
+    font-size: 16px;
+    width: 75%;
+    box-sizing: border-box;
+    padding-right: 22px;
+    margin-top: 40px;
+    .article-box {
+        padding: 15px;
+        border-radius: 10px;
+        background: #fff;
+        margin-bottom: 16px;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
+        .article-meta {
+            .abox {
+                a {
+                    font-size: 20px;
+                    color: inherit;
+                    text-decoration: none;
+                }
+                display: inline-block;
+                line-height: 30px;
+            }
+            .arti-tag {
+                font-size: 14px;
+                display: inline-block;
+                background: $aotokenGreen;
+                color: #fff;
+                padding: 2px 4px;
+                border-radius: 5px;
+                margin: 0px 5px 0px 0px;
+                line-height: 20px;
+                vertical-align: text-bottom;
+                position: relative;
+                top:2px;
+            }
+            // }
+            time {
+                // flex: 2;
+                display: block;
+                margin: 8px 0px 10px;
+                float: right;
+                // text-align: right;
+            }
+        }
+        .article-summary {
+            color: #333;
+            margin: 5px 0px;
+            clear: both;
+        }
+        .article-gallery {
+            clear: both;
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0px;
+            .article-imgbox {
+                flex: 1;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 5px;
+                }
+            }
+            .imgbox-len-1 {
+                max-width: 100%;
+            }
+            .imgbox-len-2 {
+                max-width: 48%;
+            }
+            .imgbox-len-3 {
+                max-width: 32%;
+            }
+            .imgbox-len-4 {
+                max-width: 24%;
+            }
+        }
+        .read-more {
+            display: inline-block;
+            margin-top: 10px;
+            color: #333;
+        }
+    }
+}
+
+
+/* 首页侧边栏 */
+
+.side-box {
+    font-size: 16px;
+    margin-top: 40px;
+    width: 25%;
+    background: #fff;
+    border-radius: 6px;
+    padding: 10px;
+    display: table;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);    
+    a {
+        padding: 3px 0px;
+        display: inline-block;
+    }
+}
+
+.side-posts {
+    margin-bottom: 10px;
+}
+
+.sider-header {
+    border-bottom: 3px solid $aotokenGreen;
+    padding-bottom: 4px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.post-list {
+    list-style-type: decimal;
+    margin-left: 18px;
+    .post-list-item {
+        white-space: nowrap
+    }
+}
+
+// 分页
+.page {
+    font-size: 24px;
+    text-align: center;
+    color: #9a9a9a;
+    margin-top: 20px;
+    a, a:active {
+        color: #bebebe;
+        text-decoration: none;
+    }
+    .page-number {
+        margin: 0px 2px;
+        padding: 4px 6px;
+        border-radius: 6px;
+        background-color: #e6e6e6;
+        border-color: #adadad;
+        opacity: .9;
+        color: #333;
+        // box-shadow: none;
+    }
+    .page-number:hover, .prev:hover, .next:hover {
+        background-color: #d4d4d4;
+        border-color: #8c8c8c;
+    }
+    .current {
+        color: $aotokenGreen;
+        cursor: not-allowed;
+        color: #fff;
+        opacity: 1;
+        box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+        background-color: #286090;
+        border-color: #204d74;
+    }
+    .current:hover {
+        background-color: #286090;
+        border-color: #204d74;
+    }
+    .prev, .next {
+        color: #333;
+        padding: 0 4px;
+        margin: 0px 2px;
+        background-color: #e6e6e6;
+        border-color: #adadad;
+        padding: 4px 6px;
+        border-radius: 6px;
+    }
+}
+
+
+/* 内容页 */
+
+article {
+    flex: 1;
+    font-size: 16px;
+    padding: 20px 10px 10px;
+    width: 100%;
+}
+
+.article-header {
+    // display: flex;
+    align-content: center;
+    justify-content: space-between;
+    .title-box {
+        // display: flex;
+        // align-items: center;
+        display: inline-block;
+    }
+    .arti-tag {
+        font-size: 14px;
+        display: inline-block;
+        background: $aotokenGreen;
+        color: #fff;
+        padding: 2px 4px;
+        border-radius: 5px;
+        margin: 0px 5px 0px 0px;
+        vertical-align: middle;
+    }
+    .title {
+        font-size: 22px;
+        // display: inline-block;
+        margin-right: 10px;
+        // @include textOverFlowSingleLine;
+        display: flex;
+        align-items: center;
+    }
+    .date {
+        white-space: nowrap;
+        float: right;
+        margin-right:10px;
+    }
+    .icon-calendar {
+        display: inline-block;
+        margin-right: 4px;
+    }
+    .time {
+        display: inline-block;
+        font-size: 16px;
+        color: #333;
+        margin: 5px 0px;
+    }
+}
+
+.article-text {
+    margin-top: 50px;
+}
+
+.markdown-body {
+    font-family: Arial, STXihei, "华文细黑", Heiti, "黑体", "Microsoft YaHei", "微软雅黑", SimSun, "宋体", sans-serif;
+}
+
+.markdown-body * {
+    // font-weight: 300 !important;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+    font-weight: 300;
+}
+
+.markdown-body p {
+    // display: flex;
+    display: inline-block;
+    // align-items: center;
+    // justify-content: center;
+    // overflow: hidden;
+}
+
+.markdown-body p.imgbox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.markdown-body p em {
+    font-style: italic;
+}
+
+.markdown-body img {
+    border-radius: 15px;
+    max-width: 45%;
+    max-height: 450px;
+    margin: 0 10px;
+}
+
+.markdown-body img~br {
+    display: none;
+}
+
+.markdown-body table td, .markdown-body table th {
+    padding: 0px;
+}
+
+.markdown-body .line {
+    min-height: 18px;
+}
+
+.markdown-body blockquote p{
+    text-align: left;
+    align-items: flex-start;
+    justify-content: initial;
+}
+
+.markdown-body ul,ol {
+    list-style-type: circle;
+}
+
+
+/* 分类页面 */
+
+.tag-title, .arch-title {
+    font-size: 24px;
+    margin-top: 30px;
+    color: #1f1f1f;
+}
+
+#archive {
+    .article-list {
+        margin-top: 20px;
+        a, a:active {
+            color: #3f3f3f;
+            text-decoration: none;
+        }
+        .post-year {
+            display: inline-block;
+            font-size: 18px;
+            margin-bottom: 10px;
+            border-bottom: 3px solid $aotokenGreen;
+            &:not(:first-child) {
+                margin-top: 30px;
+            }
+        }
+        .post-item {
+            margin: 5px 0px;
+            time {
+                margin-right: 20px;
+            }
+            .post-title {
+                color: #000;
+                margin-right: 20px;
+            }
+            .post-summary {
+                display: inline-block;
+                white-space: nowrap;
+                color: #6d6d6d;
+                margin:10px 0px 10px 25px;
+            }
+        }
+    }
+}
+
+
+/* 响应式 */
+
+@media screen and (max-width:640px) {
+    .header-container {
+        .header {
+            justify-content: space-between;
+            .logo {
+                width: 100px;
+                flex: none;
+            }
+            .icon-list {
+                display: inline-block;
+                margin-right: 10px;
+                font-size: 0.58rem;
+            }
+        }
+    }
+    .header-list {
+        position: absolute;
+        top: 0px;
+        right: 5px;
+        background: $aotokenGreen;
+        display: block;
+        text-align: right;
+        border-radius: 5px;
+        transition: top 0.4s ease-in-out;
+        transition: opacity 0.4s ease-in-out;
+        opacity: 0;
+        z-index: -1;
+        .header-item {
+            display: block;
+            padding-left: 15px;
+            line-height: 0.8rem;
+            border-bottom: 1px solid darken($aotokenGreen, 10%);
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+        &:before {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            top: -10px;
+            right: 15px;
+            border: {
+                top: 0px;
+                left: 8px solid transparent;
+                right: 8px solid transparent;
+                bottom: 10px solid $aotokenGreen;
+            }
+        }
+    }
+    .header-list.active{
+        opacity: 1;
+        z-index: 1;
+        top: 68px;
+        transition: opacity 0.4s ease-in-out;
+    }
+    .footer {
+        font-size: 14px;
+        margin-top: 40px;
+        .infobox {
+            flex-direction: column;
+            margin-top: 10px;
+        }
+        .contacts {
+            text-align: center;
+            margin-right: 0px;
+            margin-bottom: 10px;
+        }
+    }
+    .content {
+        display: block;
+    }
+    article {
+        width: auto;
+    }
+    .side-box {
+        width: 100%;
+        padding: 10px 0px;
+        margin-top: 0px;
+        border-radius: 0px;
+        background: inherit;
+        box-shadow: none;
+    }
+    .side-cats{
+        display: none;
+    }
+    .side-posts, .side-tags{
+        border-bottom: 0px solid #ededed;
+        padding: 10px 10px 10px;
+        background: #fff;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);    
+    
+    }
+    .article-list {
+        width: 100%;
+        padding: 0px 0px;
+        margin-top: 20px;
+        .article-box{
+            border-radius: 0px;
+            // box-shadow: none;
+        }
+    }
+    .tag-title {
+        padding: 0 10px;
+    }
+    #archive .article-list .post-item {
+        margin-bottom: 10px;
+    }
+    #archive .article-list .post-item .post-summary {
+        margin-top: 6px;
+        margin-left: 0px;
+        padding-left: 5px;
+        border-left: 3px solid $aotokenGreen;
+        white-space: normal;
+    }
+    .markdown-body p {
+        flex-direction: column;
+    }
+    .markdown-body img {
+        max-width: 80%;
+        margin: 8px 0px;
+        max-height: 450px;
+    }
+}
+
+.ani-listshow {
+    animation: listdown 0.8s ease-in-out;
+}
+
+.ani-listhide {
+    animation: listup 0.8s ease-in-out;
+}
+
+@keyframes listdown {
+    from {
+        right: -100px;
+    }
+    to {
+        right: 5px;
+    }
+}
+
+@keyframes listup {
+    from {
+        right: 5px;
+    }
+    to {
+        right: -100px;
+    }
+}

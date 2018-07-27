@@ -1,0 +1,76 @@
+<!-- -> 定义页面布局--><!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge, chrome=1"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><meta name="keywords" content="Mrzjd Mrzebra hexo IT font-end 前端 技术"><meta name="keywords" content="Nodejs"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.bootcss.com/github-markdown-css/2.8.0/github-markdown.min.css"><link rel="stylesheet" href="/blog/less/main.css"><link rel="icon" href="/blog/images/favicon.png"><title>Nodejs总结3-fs文件系统</title><script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><script src="/blog/js/article.js"></script></head><body><header class="header"><h1 class="logo"><a href="/blog/" style="background-image:url(/blog//images/zblog-logo.png);">zblog</a></h1><i class="icon-list fa fa-bars"></i></header><div class="list-container"><ul class="header-list"><li class="header-item"><a href="/blog" title="HOME">HOME</a></li><li class="header-item"><a href="/blog/archives" title="Archives">Archives</a></li><li class="header-item"><a href="https://github.com/mrzjd" title="Github">Github</a></li></ul><div class="list-close"><i class="icon-close fa fa-times-circle-o"></i></div></div><div class="content"><article><div class="title-box"><h1 class="title"><span class="arti-tag" style="background:#43853d;">Nodejs</span>Nodejs总结3-fs文件系统</h1><div class="date"><i class="icon-calendar fa fa-calendar"></i><span class="time">2017.11.11</span></div></div><div class="article-text markdown-body"><h2 id="fs模块-文件系统"><a href="#fs模块-文件系统" class="headerlink" title="fs模块 - 文件系统"></a>fs模块 - 文件系统</h2><blockquote>
+<p>Nodejs中的文件系统模块是对POSIX（可移植性操作系统接口）的简单封装，每个功能都提供了同步和异步两种不同的形式<br>通常情况下我们都使用异步的模式，Nodejs中默认都是采用回调的形式。<br>这里需要注意的是<strong>Nodejs回调函数中的参数列表的第一个参数，总是与异常相关的（不仅仅在fs模块中，Nodejs都是这样组织代码的）</strong></p>
+</blockquote>
+<p><em>此外需要注意的是，fs因为与操作系统有关，所以许多接口的可用性会根据系统的不同而有所区别，具体结合官方文档。</em></p>
+<p>接下来我们先认识几个基础的类</p>
+<h2 id="fs-FSWatcher-类-处理文件变化的监听"><a href="#fs-FSWatcher-类-处理文件变化的监听" class="headerlink" title="fs.FSWatcher 类 - 处理文件变化的监听"></a>fs.FSWatcher 类 - 处理文件变化的监听</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var fsWatcher = fs.watch(filename[, options][, listener]); //通过工厂函数创建</span><br><span class="line"></span><br><span class="line">// Events: &apos;change&apos;, &apos;error&apos;</span><br><span class="line"></span><br><span class="line">// fsWatcher.close();</span><br><span class="line"></span><br><span class="line">// watch()参数中的listener自动绑定到change事件中</span><br><span class="line"></span><br><span class="line">listener = (evtType, filename) =&gt; &#123;</span><br><span class="line">    // evtType: &apos;rename&apos;/&apos;change&apos;</span><br><span class="line">    // filename 并不会被稳定的提供</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="fs-ReadStream-类"><a href="#fs-ReadStream-类" class="headerlink" title="fs.ReadStream 类"></a>fs.ReadStream 类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// Events: &apos;close&apos;, &apos;open&apos;</span><br><span class="line"></span><br><span class="line">// Property:</span><br><span class="line">// readStream.bytesRead; //已读字节数</span><br><span class="line">// readStream.path; //文件路径</span><br></pre></td></tr></table></figure>
+<h2 id="fs-WriteStream-类"><a href="#fs-WriteStream-类" class="headerlink" title="fs.WriteStream 类"></a>fs.WriteStream 类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// Events: &apos;close&apos;, &apos;open&apos;</span><br><span class="line"></span><br><span class="line">// writeStream.bytesWritten; //已写入字节数</span><br><span class="line">// writeStream.path; //文件路径</span><br></pre></td></tr></table></figure>
+<h2 id="fs-Stats-类-文件状态"><a href="#fs-Stats-类-文件状态" class="headerlink" title="fs.Stats 类 - 文件状态"></a>fs.Stats 类 - 文件状态</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// Factory: fs.stat() / lstat() / fstat()</span><br><span class="line"></span><br><span class="line">// Functions: </span><br><span class="line">// stats.isFile()/isDictory()/isBlockDevice()/isSocket()</span><br><span class="line"></span><br><span class="line">// stats.atime/mtime/ctime - 时间值(ms)</span><br><span class="line">// atime - 最近访问时间 - origin: mknod(2)/utimes(2)/read(2)</span><br><span class="line">// mtime - 最近修改时间 - origin: mknod(2)/utimes(2)/write(2)</span><br><span class="line">// ctime - 最近变化时间 - origin: chmod(2)/chown(2)/link(2)/rename(2)/unlink(2) + 上述atime/mtime引起变化的操作</span><br><span class="line">// brithtime - 创建时间(不稳定，有可能被ctime值代替)</span><br></pre></td></tr></table></figure>
+<h2 id="fs全局函数"><a href="#fs全局函数" class="headerlink" title="fs全局函数"></a>fs全局函数</h2><p><strong> 以下函数全为异步函数，同步请参考文档 </strong></p>
+<ul>
+<li>fs.access(path[, mode], callback]) - 检查文件的用户权限/可访问性</li>
+</ul>
+<blockquote>
+<p>通常在使用一个文件之前不会进行权限检查，因为其他进程可能正在改变文件的状态，会造成许多不稳定性。推荐直接打开一个文件，若文件不可访问-&gt;直接处理错误</p>
+</blockquote>
+<ul>
+<li><strong>fs.open(path, flags[, mode], callback) - 打开一个文件</strong></li>
+</ul>
+<blockquote>
+<p><strong> flags - 文件读写模式 </strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">* &apos;r&apos; - 读（不存在则报错）</span><br><span class="line">* &apos;r+&apos; - 读写（不存在则报错）</span><br><span class="line"></span><br><span class="line">* &apos;w&apos; - 写（不存在则新建，存在则引用）</span><br><span class="line">* &apos;w+&apos; - 读写（不存在则新建，存在则引用）</span><br><span class="line">* &apos;wx&apos; - 新建并写（文件存在则报错）</span><br><span class="line">* &apos;wx+&apos; - 新建并读写（文件存在则报错）</span><br><span class="line"></span><br><span class="line">* &apos;a&apos; - 追加（不存在则新建）</span><br><span class="line">* &apos;a+&apos; - 读写和追加</span><br><span class="line">* &apos;ax&apos;/&apos;ax+&apos; - 同理</span><br><span class="line"></span><br><span class="line">* &apos;rs+&apos; - 绕过缓存实时读写</span><br><span class="line"></span><br><span class="line">// 写与追加的区别</span><br><span class="line">// 写 -&gt; 可以指定文件内容的offset -&gt; 从指定位置写入新内容</span><br><span class="line">// 追加 -&gt; 总是在文件结尾处写入新内容</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">callback = (err, fd) =&gt; &#123;</span><br><span class="line">    // fd // 文件描述符</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>fs.close(fd, callback) -&gt; 关闭一个文件描述符/释放资源</strong></li>
+</ul>
+<blockquote>
+<p><strong>重点说明</strong><br><strong>1.使用open打开一个文件，在回调中取得该文件的文件描述符fd，这个描述符有关的资源是不会自动释放的，当我们需要重复利用这一个文件时可以保持对这个fd引用，不需要的时候需要手动释放资源close(); 这里请注意！</strong><br><strong>2.在下列方法函数中，一部分是直接使用path_url作为参数进行文件访问，内部会自动处理描述符资源。另一部分可以使用fd作用参数的函数，函数在结束操作时并不会自动处理描述符资源。两者的关系需要区别。</strong></p>
+</blockquote>
+<h4 id="读文件"><a href="#读文件" class="headerlink" title="读文件"></a>读文件</h4><ul>
+<li>fs.read(fd, buffer, offset, length, position, callback) - 读</li>
+<li>fs.readdir(path[, options], callback) - 读指定目录内容</li>
+<li>fs.readFile(path[, options], callback) - 读文件 // path-&gt;url/fd</li>
+<li>fs.createReadStream(path[, options]) // 创建文件读取流</li>
+</ul>
+<h4 id="写文件"><a href="#写文件" class="headerlink" title="写文件"></a>写文件</h4><ul>
+<li>fs.write(fd, buffer[, offset[, length[, position]]], callback) -&gt; 写buffer</li>
+<li>fs.write(fd, string[, position[, encoding]], callback) -&gt; 写string</li>
+<li>fs.writeFile(file, data[, options], callback) -&gt; data = buffer/string</li>
+<li>fs.createWriteStream(path[, options]) // 创建文件可写流</li>
+</ul>
+<h4 id="追加"><a href="#追加" class="headerlink" title="追加"></a>追加</h4><ul>
+<li>fs.appendFile(file, data[, options], callback) -&gt; 追加</li>
+</ul>
+<h4 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h4><ul>
+<li>fs.chmod(path, mode, callback) -&gt; 修改文件权限</li>
+<li>fs.chown(path, uid, gid, callback)</li>
+<li>fs.fchmod(fd, mode, callback)</li>
+<li>fs.fchown(fd, uid, gid, callback)</li>
+</ul>
+<h4 id="文件信息"><a href="#文件信息" class="headerlink" title="文件信息"></a>文件信息</h4><ul>
+<li>fs.stat(path, callback) -&gt; 获取文件信息对象</li>
+<li>fs.fstat(fd, callback)</li>
+</ul>
+<h4 id="文件其他"><a href="#文件其他" class="headerlink" title="文件其他"></a>文件其他</h4><ul>
+<li>fs.rename(oldPath, newPath, callback) -&gt; 重命名</li>
+<li>fs.unlink(path, callback) -&gt; 删除文件</li>
+<li>fs.copyFile(src, dest[, flags], callback) -&gt; 复制</li>
+<li>fs.truncate(path[, len], callback) -&gt; 截断文件 //超出len部分数据将丢失</li>
+<li>fs.link(existingPath, newPath, callback) -&gt; 建立快捷方式</li>
+<li>fs.utimes(path, atime, mtime, callback) -&gt; 修改文件时间戳</li>
+<li>fs.futimes(fd, atime, mtime, callback)</li>
+</ul>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ul>
+<li>fs.rmdir(path, callback) -&gt; 删除目录</li>
+<li>fs.realpath(path[, options], callback) -&gt; 路径是否有效</li>
+<li>fs.mkdtemp(prefix[, options], callback) -&gt; 创建临时目录, 通常制定prefix = path.join(os.tmpdir(), ‘yourprefix-‘)</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>文件操作是我们利用Nodejs处理后台应用很重要的一部分，小型的应用可能会利用文件进行数据的持久化操作; 在前端工程化，我们通常说到的热加载也是基于文件的操作。这一块的内容实际上都是对操作系统底层命令的封装，便于我们更加灵活地构建Nodejs服务。</p>
+<h2 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h2><ul>
+<li>基础实例</li>
+<li>读取大型文件实例(MP4视频分割渲染压缩等)</li>
+<li>http-server之文件热更新(fs+websocket)</li>
+</ul>
+</div></article></div><footer class="footer"><p class="info">Welcome to mrzjd's blog!</p><div class="infobox"><ul class="contacts"><li class="contacts-i">QQ: 390303304</li><li class="contacts-i">Mail: 390303304@qq.com</li></ul><p>Powered by hexo and github. The theme is zebra-theme.</p></div></footer></body></html>

@@ -1,0 +1,101 @@
+@charset "UTF-8";
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+
+body { line-height: 1; }
+
+ol, ul { list-style: none; }
+
+blockquote, q { quotes: none; }
+
+blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+
+@media screen and (min-width: 320px) { html { font-size: 50px; } }
+
+@media screen and (min-width: 360px) { html { font-size: 56.25px; } }
+
+@media screen and (min-width: 375px) { html { font-size: 58.59375px; } }
+
+@media screen and (min-width: 400px) { html { font-size: 62.5px; } }
+
+@media screen and (min-width: 414px) { html { font-size: 64.6875px; } }
+
+@media screen and (min-width: 440px) { html { font-size: 68.75px; } }
+
+@media screen and (min-width: 480px) { html { font-size: 75px; } }
+
+@media screen and (min-width: 520px) { html { font-size: 81.25px; } }
+
+@media screen and (min-width: 560px) { html { font-size: 87.5px; } }
+
+@media screen and (min-width: 600px) { html { font-size: 93.75px; } }
+
+@media screen and (min-width: 640px) { html { font-size: 100px; } }
+
+@media screen and (min-width: 680px) { html { font-size: 106.25px; } }
+
+@media screen and (min-width: 720px) { html { font-size: 112.5px; } }
+
+@media screen and (min-width: 760px) { html { font-size: 118.75px; } }
+
+@media screen and (min-width: 800px) { html { font-size: 125px; } }
+
+@media screen and (min-width: 960px) { html { font-size: 150px; } }
+
+/* mixin 相当于函数 */
+html, body { width: 100%; height: 100%; font-family: Arial, STXihei, "华文细黑", Heiti, "黑体", "Microsoft YaHei", "微软雅黑", SimSun, "宋体", sans-serif; }
+
+.flex-center, .main-content { display: flex; align-items: center; justify-content: center; }
+
+.header { display: none; }
+
+.container-bg { width: 100%; height: 100%; position: absolute; top: 0px; left: 0px; z-index: -1; background: url("http://ouzcfzhgs.bkt.clouddn.com/blog/20170820/192602948.jpg") no-repeat; background-size: cover; }
+
+.main-content { width: 100%; height: 100%; flex-direction: column; font-size: 0.12rem; }
+
+.avatar-box { width: 1rem; height: 1rem; margin-top: -1.5rem;
+    animation: bounchIn 0.6s ease-in-out;
+}
+
+.avatar { width: 100%; height: 100%; border-radius: 50%; }
+
+.nav-list { display: flex; align-content: center; background-color: #00896C; margin-top: 0.4rem; box-shadow: -2px -2px 30px #007058;
+}
+
+.nav-item { padding: 0.08rem 0.2rem; cursor: pointer; }
+
+.nav-item:hover { background-color: #007f64; }
+
+.nav-item a { color: #fff; text-decoration: none; }
+
+.footer { font-size: 0.1rem; position: absolute; width: 100%; bottom: 10px; text-align: center; color: #bbb; }
+
+.footer-info { padding: 0.1rem 0rem; }
+
+.footer-item { display: inline-block; padding: 0rem 0.1rem; }
+
+.footer-item a { color: #bbb; }
+
+@keyframes bounchIn{
+    0% {
+        transform: scale(0, 0);
+    }
+
+    100% {
+        transform: scale(1, 1);
+    }
+}
+
+
+@media screen and (max-width: 640px) { .main-content { font-size: .36rem; }
+  .avatar-box { width: 2.2rem; height: 2.2rem; }
+  .nav-list { flex-direction: column; text-align: center; margin-top: 0.8rem; box-shadow: -2px -2px 10px #007058; }
+  .nav-item { border-bottom: 1px solid #007058; padding: 0.18rem 0.2rem; } }
