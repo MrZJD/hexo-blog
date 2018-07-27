@@ -8,8 +8,8 @@ branch theme - theme code
 
 #### Dev Env
 
-* hexo-blog
-* hexo-blog-web
+* hexo-blog [master] - 用于写文章
+* hexo-blog-web [web] - website
 * hexo-blog-imgs
 
 ```bash
