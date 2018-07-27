@@ -1,0 +1,20 @@
+<!-- header bar -->
+<header class="header">
+    <h1 class="logo">
+        <a href="<%= config.root %>" style="<%= 'background-image: url(' + config.root + config.logopic + ');' %>"><%= config.logo ? config.logo : "zblog" %></a>
+    </h1>
+    <i class="icon-list fa fa-bars"></i>
+</header>
+<!-- nav bar -->
+<div class="list-container">
+    <ul class="header-list">
+        <% for(var key in config.header.list) { %>
+            <li class="header-item">
+                <a href="<%= config.header.list[key] %>" title="<%= key %>"><%= key %></a>
+            </li>
+        <% } %>
+    </ul>
+    <div class="list-close">
+        <i class="icon-close fa fa-times-circle-o"></i>
+    </div>
+</div>

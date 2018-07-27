@@ -1,0 +1,10 @@
+<footer class="footer">
+    <p class="info"><%= config.footer.info %></p>
+    <div class="infobox">
+        <ul class="contacts">
+            <% for(var key in config.footer.contact){ %>
+                <li class="contacts-i"><%= key + ": " + config.footer.contact[key] %></li>
+            <% } %>
+        </ul>
+    </div>
+</footer>

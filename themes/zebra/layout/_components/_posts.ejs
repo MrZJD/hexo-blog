@@ -1,0 +1,49 @@
+//- post articles 相关
+
+//-- -> 渲染博文按照时间分类的列表
+mixin postLists()
+	- var year = 0
+	- page.posts.each(function (item) {
+		- var thisYear = + date(item.date, 'YYYY')
+		if year != thisYear
+			- year = thisYear
+			h1.post-year
+				a(href=url_for(config.archive_dir + '/' + year))!= year
+		.post-item
+			time!= date(item.date, 'MM.DD')
+			a.post-title(href= url_for(item.path))!= item.title
+			- if( item.summary ) {
+			p.post-summary=item.summary
+			- }
+	- })
+
+//- -> 渲染最新博文
+//- mixin postNewArticles(num)
+//- 	- return list_posts({amout:num});
+
+mixin categories()
+	- var categories=site.categories
+	- if (page.category){
+		- categories=categories.filter(function(category){
+			- return category.name==page.category
+		-})
+	- }
+	- categories.each(function(category){
+		h1.post-category
+		a(href=url_for(config.category_dir + '/' + category.name + '/'))!=category.name
+		span='( ' + category.posts.length + ' )'
+		- category.posts.each(function(post) {
+		.post-item
+		time!= date(post.date, 'MM.DD')
+		a.post-title-link(href= url_for(post.path))!= post.title
+		- })
+	- })
+
+mixin tags()
+	- var tags=site.tags
+	div.tags-box
+		- tags.each(function(tag){
+		h1.post-tag
+			a(href=url_for(config.tag_dir + '/' + tag.name + '/'))!=tag.name
+			span='  (' + tag.posts.length + ')'
+		- })

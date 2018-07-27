@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./_partial/head.ejs') %>
+</head>
+<body>
+    <%- include('./_components/_title.ejs') %>
+
+    <ul class="article-list">
+        <% page.posts.forEach(function(post) { %>
+            <li class="article-box">
+                <div class="article-meta">
+                    <% if( post.headtag ) { %>
+                        <span class="arti-tag" style="<%= 'background: ' + post.headtagColor %>"><%= post.headtag %></span>
+                    <% } %>
+                    <a href="<%= url_for(post.path) %>" class="title"><%- post.title %></a>
+                    <span class="time"><% date(post.date, 'YYYY.MM.DD') %></span>
+                </div>
+                <% if( post.summary ) { %>
+                    <p class="article-summary"><%= post.summary %></p>
+                <% } %>
+                <% if( post.photos.length ) { %>
+                    <div class="article-gallery">
+                        <% post.photos.forEach(function(photo) { %>
+                            <div class="<%= 'article-imgbox' + ' imgbox-len-' + post.photos.length %>">
+                                <img src="<%= photo %>">
+                            </div>
+                        <% }); %>
+                    </div>
+                    <a href="<%= url_for(post.path) %>" class="read-more">more..</a>
+                <% } %>
+            </li>
+        <% }); %>
+    </ul>
+
+    <%- include('./_partial/footer.ejs') %>
+</body>
+</html>

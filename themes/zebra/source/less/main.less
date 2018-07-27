@@ -1,0 +1,101 @@
+@import "./media.less";
+
+@aotokenGreen: #00AA90;
+
+// 定义颜色结构
+@basic-bg: #f9f9f9;
+@header-icon: #000;
+@header-border: darken(@basic-bg, 20%);
+
+@icon-color: #000;
+
+// 定义样式
+@icon-size: 28px;
+@text-size-xs: 12px;
+@text-size-s: 16px;
+@text-size-normal: 18px;
+@text-size-l: 20px;
+@text-size-xl: 26px;
+@text-size-xxl: 36px;
+@text-color: #333;
+
+.no-margin {
+    margin: 0px;
+}
+
+.no-scorll-x {
+    overflow-x: hidden;
+}
+
+.size-zero {
+    width: 0px;
+    height: 0px;
+}
+
+.size-fill {
+    width: 100%;
+    height: 100%;
+}
+
+.list-style-none {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.header-padding {
+    padding: 0 12px;
+}
+
+.icon-padding {
+    padding: 16px;
+}
+
+.all-in-center-row-layout {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+
+.text-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.text-line-ellipsis(@line) {
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: @line;
+    -webkit-box-orient: vertical;
+}
+
+// 正式内容
+
+html, body{
+    .no-margin;
+    .no-scorll-x;
+    font-family: Arial, STXihei, "华文细黑", Heiti, "黑体", "Microsoft YaHei", "微软雅黑", SimSun, "宋体", sans-serif;
+}
+
+@import url("./pc.less");
+@import url("./article.less");
+@import url("./archives.less");
+
+@import url("./response.less");
+
+.markdown-body ul {
+    margin: 10px 0px;
+}
+
+.markdown-body pre .line {
+    min-height: 17px;
+}
+
+.css-box {
+    br {
+        display: none;
+    }
+}

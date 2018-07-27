@@ -1,0 +1,155 @@
+@media screen and (max-width: 720px) {
+    .content {
+        width: 95%;
+    }
+
+    .footer {
+        .info {
+            width: 95%;
+        }
+
+        .infobox {
+            width: 95%;
+        }
+    }
+}
+
+@media screen and (max-width: 414px) {
+
+header{
+    display: flex;
+    justify-content: space-between;
+
+    .logo{
+        font-size: 0px;
+        width: 1.45rem;
+
+        a {
+            .size-fill;
+            display: block;
+            background-size: cover;
+        }
+    }
+
+    .icon-list{
+        .icon-padding;
+        display: block;
+        font-size: @icon-size;
+        color: @header-icon;
+    }
+}
+
+.list-container {
+    .size-fill;
+    .all-in-center-row-layout;
+    position: fixed;
+    background: fade(@basic-bg, 90%);
+    top: 0;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+    transform: scale(0, 0);
+
+    &.active {
+        transform: scale(1, 1);
+    }
+
+    .header-list {
+        .list-style-none;
+        display: block;
+        text-align: center;
+        font-size: @text-size-l;
+    }
+
+    .header-item {
+        display: block;
+        a {
+           display: inline-block;
+            padding: 0.2rem 0 0.1rem;
+            color: #000;
+            text-decoration: none;
+            border-bottom: 1px darken(@basic-bg, 80%) dashed;
+        }
+
+        &:after {
+            display: none;
+        }
+    }
+
+    .list-close {
+        display: block;
+        text-align: center;
+        margin-top: 0.8rem;
+        color: lighten(@icon-color, 70%);
+        .icon-close {
+            font-size: @text-size-xxl;
+        }
+    }
+}
+
+.content {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+
+    .article-list {
+        width: 100%;
+    }
+
+    .side-box {
+        width: 100%; 
+    }
+}
+
+.article-meta {
+    position: relative;
+
+    .arti-tag {
+        position: absolute;
+        top: 10px;
+        left: 0px;
+    }
+
+    time {
+        position: absolute;
+        top: 10px;
+        right: 0px;
+    }
+
+    .title {
+        margin-top:20px;
+        white-space: normal;
+        overflow: auto;
+    }
+}
+
+.side-box {
+    .header-padding;
+    box-sizing: border-box;
+
+    .post-list {
+        white-space: nowrap;
+        overflow-x: scroll;
+        padding: 15px 0px;
+        vertical-align: top;
+
+        .post-list-item {
+            margin-bottom: 0px;
+            &:last-child {
+                margin-right: 4px;
+            }
+        }
+    }
+
+}
+
+.content .markdown-body .imgbox img {
+    max-width: 48%;
+    margin: 5px;
+}
+
+#archive .archives-list .post-item {
+    width: 45.5%;
+}
+
+}
+
